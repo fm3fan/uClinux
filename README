@@ -1,8 +1,226 @@
 This is the source tree of the uClinux kernel that is part of the Linux
-Cortex-M distribution maintained by Emcraft Systems.
+Cortex-M distribution.
 
-The list of Cortex-M3 and Cortex-M4 MCUs and boards supported by this
-version of Linux Cortex-M is available at http://www.emcraft.com.
+It is intended to support SPANSION Cortex-M3 FM3 CPU. 
+It is based on EmcraftSystems/linux-emcraft implementation. Thank you very much.
 
-If you want to contribute code to this source tree, please email your
-patches to a2f-linux-support@emcraft.com.
+[Supported configuration]
+
+The following boards are supported.
+- CQ_FRK_FM3 (CPU board) + LFCQ1 (4MB) + WKFM3 (Network board)
+
+CQ_FRK_FM3 is a board released by CQ Publishing in Japan, using MB9BF618T CPU (FM3 type2).
+The board is bundled with the magazine of "Interface" Jun-2012 edition.
+Product	  (http://www.kumikomi.net/interface/contents/201206.php)
+Schematic (http://www.kumikomi.net/interface/editors/CQ-FRK-FM3_schematic.pdf)
+
+LFCQ1 is a memory board, which is released by l-and-f corp. (http://www.l-and-f.co.jp)
+Product		(http://www.l-and-f.co.jp/seihin/LF/LFCQ1%282%29.htm)
+
+WKFM3 is a network board for "CQ_FRK_FM3" board which is released by WAKAMATSU TSUSHO.
+Product		(http://www.wakamatsu-net.com/cgibin/biz/pageshousai.cgi?code=38310029&CATE=3831)
+Schematic	(http://www.wakamatsu-net.com/biz/wkfm3_s.pdf)
+
+[Prerequisites]
+
+- Prepare ARM uClinux toolchain (such as SourceryG++)
+  For example, http://www.codesourcery.com/sgpp/lite/arm/portal/package6503/public/arm-uclinuxeabi/arm-2010q1-189-arm-uclinuxeabi-i686-pc-linux-gnu.tar.bz2
+- Linux (ex. Ubuntu 12.04)
+
+[Build]
+- Set CROSS_COMPILE and others
+
+export PATH=~/arm-2010q1/bin:$PATH
+export CROSS_COMPILE=arm-uclinuxeabi-
+export LANG=C
+
+- Make 
+
+make distclean
+
+cp release/20140612/lfcq1/usb/initramfs_lfcq1_usb.txt initramfs_lfcq1_usb.txt
+cp release/20140612/lfcq1/min/config_lfcq1_usb .config
+
+make menuconfig
+
+make uImage
+
+uImage file is created on arch/arm/boot directory
+
+[Boot message]
+
+
+U-Boot 2010.03-00000-gb909fc8-dirty (Jun 11 2014 - 22:08:41)
+
+CPU  : Fujitsu FM3 series (Cortex-M3)
+Board: CQ_FRK_FM3 + LFCQ1 Rev Rev 0.1, Kentaro Sekimoto
+DRAM:   4 MB
+Flash:  1 MB
+*** Warning - bad CRC, using default environment
+
+In:    serial
+Out:   serial
+Err:   serial
+Net:   fm3_eth
+FM3> tftpboot uImage
+PHY: Find OK id=10
+PHY: ReadID OK 0015
+PHY: ReadID OK f450
+Waiting for auto negotiation...
+PHY: AutoNegotiate OK
+LinkSpeed: Full Duplex
+LinkSpeed: 100Mbs
+Using fm3_eth device
+TFTP from server 192.168.1.2; our IP address is 192.168.1.160
+Filename 'uImage'.
+Load address: 0x62000000
+Loading: #################################################################
+         ###############################################
+done
+Bytes transferred = 1629536 (18dd60 hex)
+FM3> boot
+Unknown command 'boot' - try 'help'
+FM3> bootm
+## Booting kernel from Legacy Image at 62000000 ...
+   Image Name:   Linux-2.6.33-arm1
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    1629472 Bytes =  1.6 MB
+   Load Address: 62008000
+   Entry Point:  62008001
+   Verifying Checksum ... OK
+   Loading Kernel Image ... OK
+OK
+
+Starting kernel ...
+
+Linux version 2.6.33-arm1 (ksekimoto@ub120432) (gcc version 4.4.1 (Sourcery G++ Lite 2010q1-189) ) #2 Thu Jun 12 23:05:04 JST 2014
+CPU: ARMv7-M Processor [412fc231] revision 1 (ARMv7M)
+CPU: NO data cache, NO instruction cache
+Machine: Fujitsu FM3
+Built 1 zonelists in Zone order, mobility grouping off.  Total pages: 1016
+Kernel command line: console=ttyS0,115200 panic=10 earyprintk
+PID hash table entries: 16 (order: -6, 64 bytes)
+Dentry cache hash table entries: 1024 (order: 0, 4096 bytes)
+Inode-cache hash table entries: 1024 (order: 0, 4096 bytes)
+Memory: 4MB = 4MB total
+Memory: 2372k/2372k available, 1724k reserved, 0K highmem
+Virtual kernel memory layout:
+    vector  : 0x00000000 - 0x00001000   (   4 kB)
+    fixmap  : 0xfff00000 - 0xfffe0000   ( 896 kB)
+    vmalloc : 0x00000000 - 0xffffffff   (4095 MB)
+    lowmem  : 0x62000000 - 0x62400000   (   4 MB)
+    modules : 0x62000000 - 0x62400000   (   4 MB)
+      .init : 0x62008000 - 0x62058000   ( 320 kB)
+      .text : 0x62058000 - 0x6217e000   (1176 kB)
+      .data : 0x6217e000 - 0x62195d20   (  96 kB)
+NR_IRQS:53
+Calibrating delay loop... 13.87 BogoMIPS (lpj=69376)
+Mount-cache hash table entries: 512
+NET: Registered protocol family 16
+bio: create slab <bio-0> at 0
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+Switching to clocksource cm3-systick
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 512 (order: 0, 4096 bytes)
+TCP bind hash table entries: 512 (order: -1, 2048 bytes)
+TCP: Hash tables configured (established 512 bind 512)
+TCP reno registered
+NET: Registered protocol family 1
+alg: No test for stdrng (krng)
+Block layer SCSI generic (bsg) driver version 0.4 loaded (major 254)
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+fm3_uart.0: ttyS0 at MMIO 0x40038000 (irq = 7) is a FM3 UART Port
+console [ttyS0] enabled
+fm3_spi fm3_spi.1: SPI Controller 1-2 at 0x40038100 no irq
+fm3_eth: found MAC at 0x40064000, irq 32
+fm3_mii_bus: probed
+found PHY id 0x15f450 addr 16
+eth0: using MII interface
+Waiting for auto negotiation...
+PHY: AutoNegotiate OK
+LinkSpeed: Full Duplex
+LinkSpeed: 100Mbs
+eth0: attached PHY driver [Generic PHY] (mii_bus:phy_addr=00:10, irq=-1)
+fm3_usb: driver fm3_usb, 29 Aprl 2014
+FULL SPEED detected
+fm3_usb fm3_usb.0: USB Host Controller
+fm3_usb fm3_usb.0: new USB bus registered, assigned bus number 1
+fm3_usb fm3_usb.0: irq 37, io mem 0x00000000
+FULL SPEED detected
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 1 port detected
+Initializing USB Mass Storage driver...
+usbcore: registered new interface driver usb-storage
+USB Mass Storage support registered.
+i2c /dev entries driver
+I2C Controller i2c-1 ch1_0 clk=100Khz at 0x40038100 irq=9-10
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+TCP cubic registered
+Freeing init memory: 320K
+init started: BusyBox v1.21.1 (2014-01-05 15:50:58 JST)
+usb 1-1: new full speed USB device using fm3_usb and address 2
+Mounting proc
+Mounting sysfs
+Mounting devpts
+scsi0 : usb-storage 1-1:1.0
+Setting hostname to uclinux
+hostname: applet not found
+Bringing up loopback device
+route: applet not found
+Bringing up Eth0
+ifconfig eth0 hw ether 00:11:22:33:44:55
+ifconfig eth0 192.168.1.100 netmask 255.255.255.0
+ethaddr=00:11:22:33:44:55
+ifconfig eth0 up
+done!
+Welcome to
+          ____ _  _
+         /  __| ||_|
+    _   _| |  | | _ ____  _   _  _  _
+   | | | | |  | || |  _ \| | | |\ \/ /
+   | |_| | |__| || | | | | |_| |/    \
+   |  ___\____|_||_|_| |_|\____|\_/\_/
+   | |
+   |_|
+
+Fujitsu FM3/FM4 port.
+For further information check:
+http://www.uclinux.org/
+
+
+
+BusyBox v1.21.1 (2014-01-05 15:33:24 JST) hush - the humble shell
+
+/ # scsi 0:0:0:0: Direct-Access     USB 2.0  USB Flash Drive  1.00 PQ: 0 ANSI: 2
+sd 0:0:0:0: Attached scsi generic sg0 type 0
+sd 0:0:0:0: [sda] 3964928 512-byte logical blocks: (2.03 GB/1.89 GiB)
+sd 0:0:0:0: [sda] Write Protect is off
+sd 0:0:0:0: [sda] Assuming drive cache: write through
+sd 0:0:0:0: [sda] Assuming drive cache: write through
+ sda: sda1
+sd 0:0:0:0: [sda] Assuming drive cache: write through
+sd 0:0:0:0: [sda] Attached SCSI removable disk
+
+/ # ping 192.168.1.2
+PING 192.168.1.2 (192.168.1.2): 56 data bytes
+64 bytes from 192.168.1.2: seq=0 ttl=128 time=127.425 ms
+64 bytes from 192.168.1.2: seq=1 ttl=128 time=4.000 ms
+64 bytes from 192.168.1.2: seq=2 ttl=128 time=3.879 ms
+64 bytes from 192.168.1.2: seq=3 ttl=128 time=3.984 ms
+64 bytes from 192.168.1.2: seq=4 ttl=128 time=3.998 ms
+64 bytes from 192.168.1.2: seq=5 ttl=128 time=3.985 ms
+64 bytes from 192.168.1.2: seq=6 ttl=128 time=3.987 ms
+64 bytes from 192.168.1.2: seq=7 ttl=128 time=3.879 ms
+^C
+--- 192.168.1.2 ping statistics ---
+8 packets transmitted, 8 packets received, 0% packet loss
+round-trip min/avg/max = 3.879/19.392/127.425 ms
+/ #
+
