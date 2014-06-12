@@ -1,0 +1,75 @@
+#!/bin/sh
+trap "" SIGHUP
+echo "Mounting proc"
+mount -t proc none /proc
+echo "Mounting sysfs"
+mount -t sysfs sysfs /sys
+echo "Mounting devpts"
+mount -t devpts none /dev/pts
+echo "Setting hostname to uclinux"
+hostname uclinux
+
+echo "Bringing up loopback device"
+ifconfig lo 127.0.0.1 netmask 255.0.0.0 up
+route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
+echo "Bringing up Eth0"
+# FOR STATIC IP UNCOMMENT THESE LINES
+echo "ifconfig eth0 hw ether 00:11:22:33:44:55"
+ifconfig eth0 hw ether 00:11:22:33:44:55
+echo "ifconfig eth0 192.168.1.100 netmask 255.255.255.0"
+ifconfig eth0 192.168.1.100 netmask 255.255.255.0
+echo "ifconfig eth0 up"
+ifconfig eth0 up
+#echo "route add default gw eth0"
+#route add default gw eth0
+echo "done!"
+
+# USE DHCP FOR IP ADDRESS
+#ifconfig eth0 hw ether 00:01:02:03:04:80
+#ifconfig eth0 0.0.0.0
+#/sbin/udhcpc eth0
+
+#echo "Starting System logger (syslogd)"
+#syslogd -O /var/log/messages
+
+#echo "Mounting local drive"
+#mount /dev/hda1 /disk && mkdir -p /disk/tmp
+#if [ $? -eq 0 ]; then
+#    ln -s /disk/tmp /tmp
+#else
+#    echo "Disk not detected !"
+#    mkdir /tmp
+#fi
+
+#ln -s /disk/ADDON/share/terminfo  /etc/terminfo
+
+#echo "Starting inetd"
+#inetd
+#mount -t nfs -o nolock 10.0.0.2:/home/vineetg /nfs
+#echo 1 > /proc/sys/kernel/print-fatal-signals
+
+#grep tmpfs /proc/filesystems > /dev/null
+#if [ $? -eq 0 ]; then
+#    echo "Mounting tmpfs"
+#    mkdir /dev/shm
+#    mount -t tmpfs tmpfs /dev/shm
+#fi
+
+#grep mqueue /proc/filesystems > /dev/null
+#if [ $? -eq 0 ]; then
+#    echo "Mounting Posix Mqueue filesys"
+#    mkdir /dev/mqueue
+#    mount -t mqueue mqueue /dev/mqueue
+#fi
+
+#grep debugfs /proc/filesystems > /dev/null
+#if [ $? -eq 0 ]; then
+#    echo "Mounting Debugfs"
+#    mkdir /debugfs
+#    mount -t debugfs debugfs /debugfs
+#fi
+
+#echo 20 > /proc/sys/kernel/msgmni
+
+#/sbin/arc_ntp_get 91.189.94.4 "IST-4:30DST"
+cat /etc/motd

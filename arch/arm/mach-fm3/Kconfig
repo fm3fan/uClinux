@@ -1,0 +1,183 @@
+if ARCH_FM3
+
+config MACH_FM3
+	bool
+	default y
+	select ARM_NVIC if CPU_V7M
+	help
+	  Include support for the Fujitsu FM3 micro processor
+
+menu "FM3 Board Type"
+	depends on ARCH_FM3
+	
+config MACH_FM3_LFCQ1
+	bool "SPANSION FM3 CQ_FRK_FM3 + LFCQ1"
+	default n
+	depends on ARCH_FM3
+	help
+	  Configure this option to specify the whether the board used
+	  for development is a CQ_FRK_FM3 + LFCQ1
+
+config MACH_FM3_WXMP3PLCD
+	bool "SPANSION FM3 CQ_FRK_FM3 + WXMP3PLCD"
+	default n
+	depends on ARCH_FM3
+	help
+	  Configure this option to specify the whether the board used
+	  for development is CQ_FRK_FM3 + WXMP3PLCD
+	  
+config MACH_FM3_CQFM3DUINO
+	bool "SPANSION FM3 CQ_FRK_FM3 + CQFM3DUINO"
+	default n
+	depends on ARCH_FM3
+	help
+	  Configure this option to specify the whether the board used
+	  for development is CQ_FRK_FM3 + CQFM3DUINO
+
+config MACH_FM3_KS_MB9BF506
+	bool "SPANSION FM3 MB9BF506"
+	default n
+	depends on ARCH_FM3
+	help
+	  Configure this option to specify the whether the board used
+	  for development is KS_MB9BF506 board
+
+endmenu
+
+menu "FM3 I/O interfaces"
+	depends on ARCH_FM3
+
+config FM3_USART0
+	depends on ARCH_FM3 && SERIAL_FM3
+	bool "Enable FM3 USART0 port"
+	default n
+
+config FM3_USART1
+	depends on ARCH_FM3 && SERIAL_FM3
+	bool "Enable FM3 USART1 port"
+	default y
+
+config FM3_USART2
+	depends on ARCH_FM3 && SERIAL_FM3
+	bool "Enable FM3 USART2 port"
+	default n
+
+config FM3_USART3
+	depends on ARCH_FM3 && SERIAL_FM3
+	bool "Enable FM3 USART3 port"
+	default n
+
+config FM3_USART4
+	depends on ARCH_FM3 && SERIAL_FM3
+	bool "Enable FM3 USART4 port"
+	default n
+
+config FM3_USART5
+	depends on ARCH_FM3 && SERIAL_FM3
+	bool "Enable FM3 USART5 port"
+	default n
+
+config FM3_USART6
+	depends on ARCH_FM3 && SERIAL_FM3
+	bool "Enable FM3 USART6 port"
+	default n
+
+config FM3_USART7
+	depends on ARCH_FM3 && SERIAL_FM3
+	bool "Enable FM3 USART7 port"
+	default n
+
+config FM3_SPI0
+	depends on ARCH_FM3 && SPI_FM3
+	bool "Enable FM3 SPI0 port"
+	default n
+
+config FM3_SPI1
+	depends on ARCH_FM3 && SPI_FM3
+	bool "Enable FM3 SPI1 port"
+	default y
+
+config FM3_SPI2
+	depends on ARCH_FM3 && SPI_FM3
+	bool "Enable FM3 SPI2 port"
+	default n
+
+config FM3_SPI3
+	depends on ARCH_FM3 && SPI_FM3
+	bool "Enable FM3 SPI3 port"
+	default n
+
+config FM3_SPI4
+	depends on ARCH_FM3 && SPI_FM3
+	bool "Enable FM3 SPI4 port"
+	default n
+
+config FM3_SPI5
+	depends on ARCH_FM3 && SPI_FM3
+	bool "Enable FM3 SPI5 port"
+	default n
+
+config FM3_SPI6
+	depends on ARCH_FM3 && SPI_FM3
+	bool "Enable FM3 SPI6 port"
+	default n
+
+config FM3_SPI7
+	depends on ARCH_FM3 && SPI_FM3
+	bool "Enable FM3 SPI7 port"
+	default n
+
+config FM3_I2C0
+	depends on ARCH_FM3 && I2C_FM3
+	bool "Enable FM3 I2C0 port"
+	default n
+
+config FM3_I2C1
+	depends on ARCH_FM3 && I2C_FM3
+	bool "Enable FM3 I2C1 port"
+	default y
+
+config FM3_I2C2
+	depends on ARCH_FM3 && I2C_FM3
+	bool "Enable FM3 I2C2 port"
+	default n
+
+config FM3_I2C3
+	depends on ARCH_FM3 && I2C_FM3
+	bool "Enable FM3 I2C3 port"
+	default n
+
+config FM3_I2C4
+	depends on ARCH_FM3 && I2C_FM3
+	bool "Enable FM3 I2C4 port"
+	default n
+
+config FM3_I2C5
+	depends on ARCH_FM3 && I2C_FM3
+	bool "Enable FM3 I2C5 port"
+	default n
+
+config FM3_I2C6
+	depends on ARCH_FM3 && I2C_FM3
+	bool "Enable FM3 I2C6 port"
+	default n
+
+config FM3_I2C7
+	depends on ARCH_FM3 && I2C_FM3
+	bool "Enable FM3 I2C7 port"
+	default n
+
+config FM3_MAC
+	depends on ARCH_FM3 && FM3_ETH
+	bool "Enable FM3 Ethernet port"
+	default y
+	
+config FM3_SD
+	depends on ARCH_FM3 && MMC_ARMMMCI
+	bool "Enable FM3 SD Card interface"
+	default n
+
+endmenu
+
+
+endif

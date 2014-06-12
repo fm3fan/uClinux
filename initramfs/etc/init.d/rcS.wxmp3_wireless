@@ -1,0 +1,36 @@
+#!/bin/sh
+trap "" SIGHUP
+echo "Mounting proc"
+mount -t proc none /proc
+echo "Mounting sysfs"
+mount -t sysfs sysfs /sys
+echo "Mounting devpts"
+mount -t devpts none /dev/pts
+echo "Setting hostname to uclinux"
+hostname uclinux
+
+echo "Bringing up loopback device"
+ifconfig lo 127.0.0.1 netmask 255.0.0.0 up
+route add -net 127.0.0.0 netmask 255.0.0.0 dev lo
+echo "done!"
+
+cat /etc/motd
+
+echo "loading compat.ko"
+insmod /root/compat.ko
+echo "loading cfg80211.ko"
+insmod /root/cfg80211.ko
+echo "loading mac80211.ko"
+insmod /root/mac80211.ko
+insmod /root/rt2x00lib.ko
+insmod /root/rt2x00usb.ko
+insmod /root/rt2800lib.ko
+echo "loading rt2800usb.ko"
+insmod /root/rt2800usb.ko
+
+iwconfig wlan0 essid 0016010D7F38
+iwconfig wlan0 key 9876543210
+iwconfig wlan0
+echo "ifconfig wlan0 192.168.1.150 up"
+ifconfig wlan0 192.168.1.150 up
+

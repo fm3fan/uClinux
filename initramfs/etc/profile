@@ -1,0 +1,8 @@
+#profile for ash shell
+
+HOST_NAME=`/bin/hostname`
+export PS1='['$HOST_NAME']$ '
+
+echo '***********************************************************************'
+echo '			Welcome to' $HOST_NAME
+echo '***********************************************************************'

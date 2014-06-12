@@ -1,0 +1,139 @@
+dir /dev 755 0 0
+nod /dev/console 600 0 0 c 5 1
+nod /dev/null 600 0 0 c 1 3
+nod /dev/tty 666 0 0 c 5 0
+nod /dev/tty0 666 0 0 c 4 0
+nod /dev/ttyS0 666 0 0 c 4 64
+nod /dev/ttyS1 666 0 0 c 4 65
+nod /dev/mem 600 0 0 c 1 1
+nod /dev/kmem 600 0 0 c 1 2
+nod /dev/zero 600 0 0 c 1 5
+# nod /dev/fb0 644 0 0 c 29 0
+# nod /dev/loop0 644 0 0 b 7 0
+# nod /dev/loop1 644 0 0 b 7 1
+nod /dev/sda 644 0 0 b 8 0
+nod /dev/sda1 644 0 0 b 8 1
+nod /dev/sda2 644 0 0 b 8 2
+nod /dev/mtdblock0 0600 0 0 b 31 0
+nod /dev/mtdblock1 0600 0 0 b 31 1
+nod /dev/mmcblk0 0660 0 0 b 179 0
+nod /dev/mmcblk0p1 0660 0 0 b 179 1
+nod /dev/mmcblk0p2 0660 0 0 b 179 2
+nod /dev/i2c-0 666 0 0 c 89 0
+nod /dev/i2c-1 666 0 0 c 89 1
+nod /dev/i2c-2 666 0 0 c 89 2
+nod /dev/i2c-3 666 0 0 c 89 3
+nod /dev/i2c-4 666 0 0 c 89 4
+nod /dev/i2c-5 666 0 0 c 89 5
+nod /dev/i2c-6 666 0 0 c 89 6
+nod /dev/i2c-7 666 0 0 c 89 7
+
+dir /dev/pts 755 0 0
+nod /def/ptmx 666 0 0 c 5 2
+
+dir /bin 755 0 0
+dir /etc 755 0 0
+dir /etc/init.d 755 0 0
+dir /lib 755 0 0
+dir /mnt 777 0 0
+dir /proc 755 0 0
+# dir /sbin 755 0 0
+dir /sys 755 0 0
+dir /usr 755 0 0
+dir /usr/bin 755 0 0
+dir /usr/sbin 755 0 0
+dir /usr/share 755 0 0
+dir /root 700 0 0
+dir /var 755 0 0
+dir /var/config 755 0 0
+dir /var/lock 755 0 0
+dir /var/log 755 0 0
+dir /var/run 755 0 0
+dir /var/tmp 755 0 0
+slink /tmp /var/tmp 777 0 0
+
+# file /bin/busybox initramfs/busybox_utils 755 0 0
+# file /bin/hush initramfs/hush 755 0 0
+# file /bin/hush initramfs/busybox_hush0 755 0 0
+# file /bin/hush initramfs/busybox_LinuxM3 755 0 0
+file /bin/busybox initramfs/busybox_hush_utils 755 0 0
+
+slink /bin/sh busybox 777 0 0
+slink /bin/cat busybox 777 0 0
+slink /bin/cp busybox 777 0 0
+slink /bin/chgrp busybox 777 0 0
+slink /bin/chmod busybox 777 0 0
+slink /bin/chown busybox 777 0 0
+slink /bin/date busybox 777 0 0
+slink /bin/dmesg busybox 777 0 0
+slink /bin/echo busybox 777 0 0
+slink /bin/egrep busybox 777 0 0
+slink /bin/false busybox 777 0 0
+slink /bin/fgrep busybox 777 0 0
+slink /bin/grep busybox 777 0 0
+slink /bin/getty busybox 777 0 0
+slink /bin/hostname busybox 777 0 0
+slink /bin/hush busybox 777 0 0
+slink /bin/kill busybox 777 0 0
+slink /bin/killall busybox 777 0 0
+slink /bin/ls busybox 777 0 0
+slink /bin/lspci busybox 777 0 0
+slink /bin/lsusb busybox 777 0 0
+slink /bin/mkdir busybox 777 0 0
+slink /bin/mount busybox 777 0 0
+slink /bin/msh busybox 777 0 0
+slink /bin/mv busybox 777 0 0
+slink /bin/netstat busybox 777 0 0
+slink /bin/ping busybox 777 0 0
+slink /bin/ps busybox 777 0 0
+slink /bin/printenv busybox 777 0 0
+slink /bin/pwd busybox 777 0 0
+slink /bin/rm busybox 777 0 0
+slink /bin/rmdir busybox 777 0 0
+slink /bin/sleep busybox 777 0 0
+slink /bin/su busybox 777 0 0
+slink /bin/true busybox 777 0 0
+slink /bin/umount busybox 777 0 0
+slink /bin/ifconfig busybox 777 0 0
+slink /bin/ifdown busybox 777 0 0
+slink /bin/ifup busybox 777 0 0
+slink /bin/ip busybox 777 0 0
+slink /bin/ipaddr busybox 777 0 0
+slink /bin/route busybox 777 0 0
+slink /bin/killall busybox 777 0 0
+slink /bin/sort busybox 777 0 0
+slink /bin/tee busybox 777 0 0
+
+slink /bin/insmod busybox 777 0 0
+slink /bin/lsmod busybox 777 0 0
+
+slink /usr/bin/[ ../../bin/busybox 777 0 0
+slink /usr/bin/[[ ../../bin/busybox 777 0 0
+
+# dir /lib/firmware 755 0 0
+# file /lib/firmware/rt2870.bin initramfs/lib/firmware/rt2870.bin 755 0 0
+
+file /init initramfs/busybox_init 755 0 0
+# file /init initramfs/init.sh 755 0 0
+file /etc/fstab initramfs/etc/fstab 755 0 0
+file /etc/inittab initramfs/etc/inittab 755 0 0
+file /etc/inputrc initramfs/etc/inputrc 755 0 0
+file /etc/motd initramfs/etc/motd 755 0 0
+file /etc/init.d/rcS initramfs/etc/init.d/rcS.lfcq1_net 755 0 0
+# file /bin/iwconfig initramfs/iwconfig 755 0 0
+# file /bin/iwpriv initramfs/iwpriv 755 0 0
+# file /bin/iwlist initramfs/iwlist 755 0 0
+
+# file /root/compat.ko projects/usbwifi/compat-wireless-3.4-rc3-1/compat/compat.ko 755 0 0
+# file /root/cfg80211.ko projects/usbwifi/compat-wireless-3.4-rc3-1/net/wireless/cfg80211.ko 755 0 0
+# file /root/mac80211.ko projects/usbwifi/compat-wireless-3.4-rc3-1/net/mac80211/mac80211.ko 755 0 0
+# file /root/rt2x00lib.ko projects/usbwifi/compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2x00lib.ko 755 0 0
+# file /root/rt2x00usb.ko projects/usbwifi/compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2x00usb.ko 755 0 0
+# file /root/rt2800lib.ko projects/usbwifi/compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2800lib.ko 755 0 0
+# file /root/rt2800usb.ko projects/usbwifi/compat-wireless-3.4-rc3-1/drivers/net/wireless/rt2x00/rt2800usb.ko 755 0 0
+
+# file /bin/i2cdetect	initramfs/i2c-tools/i2cdetect 755 0 0
+# file /bin/i2cdump initramfs/i2c-tools/i2cdump 755 0 0
+# file /bin/i2cget initramfs/i2c-tools/i2cget 755 0 0
+# file /bin/i2cset initramfs/i2c-tools/i2cset 755 0 0
+# file /bin/eeprom initramfs/i2c-tools/eeprom 755 0 0

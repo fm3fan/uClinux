@@ -1,0 +1,22 @@
+# /etc/services:
+# $Id: services,v 1.33 2003/03/14 16:41:47 notting Exp $
+#
+# Network services, Internet style
+
+echo		7/tcp
+echo		7/udp
+daytime		13/tcp
+daytime		13/udp
+ftp		21/tcp
+ftp		21/udp		fsp fspd
+ssh		22/tcp				# SSH Remote Login Protocol
+ssh		22/udp				# SSH Remote Login Protocol
+telnet		23/tcp
+telnet		23/udp
+
+time		37/tcp		timserver
+time		37/udp		timserver
+
+http		80/tcp		www www-http	# WorldWideWeb HTTP
+http		80/udp		www www-http	# HyperText Transfer Protocol
+shell		514/tcp		cmd		# no passwords used
