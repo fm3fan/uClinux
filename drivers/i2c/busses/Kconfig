@@ -563,6 +563,18 @@ config I2C_STM32
 	help
 	  This is the I2C bus driver for the STM32F2/F4.
 
+config I2C_FM3
+	tristate "FM3 I2C support"
+	depends on MACH_FM3
+	help
+	  This is the I2C bus driver for the FM3.
+
+config I2C_FM4
+	tristate "FM4 I2C support"
+	depends on MACH_FM4
+	help
+	  This is the I2C bus driver for the FM4.
+
 config I2C_STU300
 	tristate "ST Microelectronics DDC I2C interface"
 	depends on MACH_U300

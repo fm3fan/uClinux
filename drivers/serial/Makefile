@@ -85,3 +85,5 @@ obj-$(CONFIG_SERIAL_GRLIB_GAISLER_APBUART) += apbuart.o
 obj-$(CONFIG_SERIAL_STM32) += stm32_usart.o
 obj-$(CONFIG_SERIAL_KINETIS) += kinetis_uart.o
 obj-$(CONFIG_SERIAL_A2F_CORE_UART) += a2f_core_uart.o
+obj-$(CONFIG_SERIAL_FM3) += fm3_uart.o
+obj-$(CONFIG_SERIAL_FM4) += fm4_uart.o

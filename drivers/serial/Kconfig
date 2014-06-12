@@ -1533,4 +1533,32 @@ config SERIAL_KINETIS_CONSOLE
 	help
 	  Use a Kinetis UART port as the system console
 
+config SERIAL_FM3
+	tristate "FM3 on-chip USART ports support"
+	depends on ARCH_FM3
+	select SERIAL_CORE
+	help
+	  This driver supports the built-in serial ports of the Fujitsu FM3 CPUs
+
+config SERIAL_FM3_CONSOLE
+	bool "Console on FM3 USART port"
+	depends on SERIAL_FM3=y
+	select SERIAL_CORE_CONSOLE
+	help
+	  Use FM3 serial port as the system console
+
+config SERIAL_FM4
+	tristate "FM4 on-chip USART ports support"
+	depends on ARCH_FM4
+	select SERIAL_CORE
+	help
+	  This driver supports the built-in serial ports of the Fujitsu FM4 CPUs
+
+config SERIAL_FM4_CONSOLE
+	bool "Console on FM4 USART port"
+	depends on SERIAL_FM4=y
+	select SERIAL_CORE_CONSOLE
+	help
+	  Use FM4 serial port as the system console
+
 endmenu

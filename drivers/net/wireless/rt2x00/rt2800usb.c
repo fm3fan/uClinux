@@ -850,6 +850,7 @@ static struct usb_device_id rt2800usb_device_table[] = {
 	/* Buffalo */
 	{ USB_DEVICE(0x0411, 0x00e8), USB_DEVICE_DATA(&rt2800usb_ops) },
 	{ USB_DEVICE(0x0411, 0x012e), USB_DEVICE_DATA(&rt2800usb_ops) },
+	{ USB_DEVICE(0x0411, 0x01a2), USB_DEVICE_DATA(&rt2800usb_ops) },
 	/* Cisco */
 	{ USB_DEVICE(0x167b, 0x4001), USB_DEVICE_DATA(&rt2800usb_ops) },
 	/* Conceptronic */

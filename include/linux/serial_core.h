@@ -191,6 +191,12 @@
 /* A2F CUART */
 #define PORT_A2FCUART	93
 
+/* FM3 UART */
+#define PORT_FM3UART    94
+
+/* FM3 UART */
+#define PORT_FM4UART    95
+
 #ifdef __KERNEL__
 
 #include <linux/compiler.h>

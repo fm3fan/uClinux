@@ -101,6 +101,7 @@ obj-$(CONFIG_ADAPTEC_STARFIRE) += starfire.o
 obj-$(CONFIG_RIONET) += rionet.o
 obj-$(CONFIG_SH_ETH) += sh_eth.o
 obj-$(CONFIG_STMMAC_ETH) += stmmac/
+obj-$(CONFIG_W5500)	+= w5500.o
 
 #
 # end link order section

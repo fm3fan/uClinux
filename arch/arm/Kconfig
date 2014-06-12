@@ -820,6 +820,22 @@ config ARCH_KINETIS
 	help
 	  This enables support for the Freescale Kinetis MCUs
 
+config ARCH_FM3
+	bool "Fujitsu FM3 SoC"
+	depends on !MMU
+	select ARM_CORTEXM3
+	select ARCH_WANT_OPTIONAL_GPIOLIB
+	help
+	  This enables support for the Fujitsu FM3
+
+config ARCH_FM4
+	bool "Fujitsu FM4 SoC"
+	depends on !MMU
+	select ARM_CORTEXM3
+	select ARCH_WANT_OPTIONAL_GPIOLIB
+	help
+	  This enables support for the Fujitsu FM4
+
 endchoice
 
 source "arch/arm/mach-aaec2000/Kconfig"
@@ -943,6 +959,10 @@ source "arch/arm/mach-lpc178x/Kconfig"
 source "arch/arm/mach-lpc18xx/Kconfig"
 
 source "arch/arm/mach-kinetis/Kconfig"
+
+source "arch/arm/mach-fm3/Kconfig"
+
+#source "arch/arm/mach-fm4/Kconfig"
 
 # Definitions to make life easier
 config ARCH_ACORN

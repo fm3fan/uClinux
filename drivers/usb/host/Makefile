@@ -13,7 +13,6 @@ ifeq ($(CONFIG_FHCI_DEBUG),y)
 fhci-objs += fhci-dbg.o
 endif
 xhci-objs := xhci-hcd.o xhci-mem.o xhci-pci.o xhci-ring.o xhci-hub.o xhci-dbg.o
-khci-objs := khci-hcd.o khci-hub.o khci-sched.o khci-mem.o khci-dbg.o
 
 obj-$(CONFIG_USB_WHCI_HCD)	+= whci/
 
@@ -33,4 +32,5 @@ obj-$(CONFIG_USB_U132_HCD)	+= u132-hcd.o
 obj-$(CONFIG_USB_R8A66597_HCD)	+= r8a66597-hcd.o
 obj-$(CONFIG_USB_ISP1760_HCD)	+= isp1760.o
 obj-$(CONFIG_USB_HWA_HCD)	+= hwa-hc.o
-obj-$(CONFIG_USB_KHCI_HCD)	+= khci.o
+obj-$(CONFIG_USB_FM3_HCD)	+= fm3_hcd.o
+obj-$(CONFIG_USB_FM4_HCD)	+= fm4_hcd.o

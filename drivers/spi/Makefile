@@ -20,6 +20,8 @@ obj-$(CONFIG_SPI_AU1550)		+= au1550_spi.o
 obj-$(CONFIG_SPI_BUTTERFLY)		+= spi_butterfly.o
 obj-$(CONFIG_SPI_DESIGNWARE)		+= dw_spi.o
 obj-$(CONFIG_SPI_DW_PCI)		+= dw_spi_pci.o
+obj-$(CONFIG_SPI_FM3)			+= spi_fm3.o
+obj-$(CONFIG_SPI_FM4)			+= spi_fm4.o
 obj-$(CONFIG_SPI_GPIO)			+= spi_gpio.o
 obj-$(CONFIG_SPI_IMX)			+= spi_imx.o
 obj-$(CONFIG_SPI_LM70_LLP)		+= spi_lm70llp.o
@@ -45,7 +47,6 @@ obj-$(CONFIG_SPI_SH_SCI)		+= spi_sh_sci.o
 obj-$(CONFIG_SPI_SH_MSIOF)		+= spi_sh_msiof.o
 obj-$(CONFIG_SPI_STMP3XXX)		+= spi_stmp.o
 obj-$(CONFIG_SPI_NUC900)		+= spi_nuc900.o
-obj-$(CONFIG_SPI_KINETIS)		+= spi_kinetis.o
 
 # special build for s3c24xx spi driver with fiq support
 spi_s3c24xx_hw-y			:= spi_s3c24xx.o

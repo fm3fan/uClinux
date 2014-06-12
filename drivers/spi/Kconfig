@@ -112,6 +112,18 @@ config SPI_BUTTERFLY
 	  inexpensive battery powered microcontroller evaluation board.
 	  This same cable can be used to flash new firmware.
 
+config SPI_FM3
+	tristate "FM3 SPI Controller"
+	depends on MACH_FM3
+	help
+	  This is the SPI controller master driver for Fujitsu FM3
+
+config SPI_FM4
+	tristate "FM4 SPI Controller"
+	depends on MACH_FM4
+	help
+	  This is the SPI controller master driver for Fujitsu FM4
+
 config SPI_GPIO
 	tristate "GPIO-based bitbanging SPI Master"
 	depends on GENERIC_GPIO
@@ -321,14 +333,6 @@ config SPI_NUC900
 	select SPI_BITBANG
 	help
 	  SPI driver for Nuvoton NUC900 series ARM SoCs
-
-config SPI_KINETIS
-	tristate "Freescale Faraday DSPI controllers"
-	depends on ARCH_KINETIS
-	default y
-	help
-	  This enables using the Freescale Faraday SPI controllers in master
-	  mode.
 
 #
 # Add new SPI master controllers in alphabetical order above this line

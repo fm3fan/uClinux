@@ -1787,6 +1787,13 @@ config KS8851_MLL
 	  This platform driver is for Micrel KS8851 Address/data bus
 	  multiplexed network chip.
 
+config W5500
+       tristate "WIZnet W5500 SPI"
+       depends on SPI
+	select CRC32
+       help
+         SPI driver for WIZnet W5500 attached network chip.
+
 config VIA_RHINE
 	tristate "VIA Rhine support"
 	depends on NET_PCI && PCI
